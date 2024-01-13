@@ -1,0 +1,40 @@
+#top{
+    height: 100px;
+    line-height: 100px;
+}
+#left{
+    width: 70%;
+}
+#right{
+    width: 30%;
+}
+#date_vcg{
+    width: 870px;
+    height: 524px;
+}
+#afterDraw{
+    width: 300px;
+    height: 523px;
+}
+#VCG2{
+    width: 576px;
+    height: 530px;
+}
+#rightInput{
+    margin-left: 50px;
+    position: relative;
+    top: 350px;
+}
+.td1{
+    height: 50px;
+}
+.td1 input{
+    border: 1px solid black;
+}
+.button2{
+    width: 60px;
+    height: 30px;
+    background-color: #4472c4;
+    color: white;
+    font-size: 18px;
+}

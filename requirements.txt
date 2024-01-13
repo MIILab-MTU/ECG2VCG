@@ -1,0 +1,5 @@
+python==3.6
+Django==3.2
+matplotlib
+numpy
+scipy

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Files</title>
+    <link rel="stylesheet" type="text/css" href="../static/layui-v2.5.7/layui/css/layui.css" media="all">
+    <script type="text/javascript" src="../static/layui-v2.5.7/layui/layui.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/loginCSS.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-xs6 layui-col-md12" id="top" align="center">
+        <div class="layui-form-item" style="margin-top: 30px">
+            <form method="post" action=""  enctype="multipart/form-data">
+                <table>
+                    <tr>
+                        <th style="font-size: 20px">Select ECG file:</th>
+                        <th width="560px">
+{#                            <input id="text" type="text" name="text">#}
+{#                            <input type="file" onchange="text.value=this.value" id="file" name="loadfile">#}
+                            <input type="file" name="upload">
+                        </th>
+                        <th>
+                            FileType:
+                            <select name="file_type" datatype="text" lay-filter="type">
+                                <option value="0">PhilipsECG</option>
+                                <option value="1">NL ECGToolkit</option>
+                                <option value="2">PhilipsECG  FDATemplate </option>
+                                <OPTION value="3">PhilipsECG  FDATemplate  SPECIAL</OPTION>
+                                <OPTION value="4">JSON ECG-Digitization</OPTION>>
+{#                                <option value="0">XML</option>#}
+{#                                <OPTION value="1">JSON-ECG-Digitization</OPTION>>#}
+                            </select>
+                            <input type="submit" id="button" value="Upload" onclick="uploadImg()">
+                        </th>
+                    </tr>
+                </table>
+            </form><br/>
+            <hr size="2" style="background-color: #8aa7da">
+        </div>
+    </div>
+
+    <div class="layui-col-xs6 layui-col-md4" id="left" align="right">
+        <form class="layui-form" action="" method="post">
+            <table>
+                <tr>
+                    <td align="right">Patient Name:</td>
+                    <td class="td1">
+                        <input type="text" name="name" lay-verify="title" autocomplete="off" class="layui-input" id="name" value="{{ name }}">
+                        <!--                        Name textbox-->
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Patient ID:</td>
+                    <td class="td1">
+                        <input type="text" name="ID" lay-verify="title" autocomplete="off" class="layui-input" id="ID" value="{{ pid }}">
+                        <!--                        ID textbox-->
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Gender:</td>
+                    <td class="td1">
+                        <input type="text" name="Gender" lay-verify="title" autocomplete="off" class="layui-input" id="Gender" value="{{ gender }}">
+                        <!--                        Sex textbox-->
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+    <div class="layui-col-xs12 layui-col-md8" id="right">
+        <div id="divImg" align="right">
+            <!--                Need to get the path to the image(Standard_12_ECG.png)-->
+            <div id="divImg2">
+                <p id="imgP"><img id="img"></p>
+                <br/>
+            </div>
+            <div>
+                <a href="/first" id="nextA"><button id="next">Next</button></a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    var name = document.getElementById("name").value;
+    var id = document.getElementById("ID").value;
+    var gender = document.getElementById("Gender").value;
+    if (name == "" || id == "" || gender == ""){
+        document.getElementById("nextA").onclick = function (){
+            alert("No file upload/Wait file upload");
+            return false;
+        }
+    }else{
+       document.getElementById("nextA").onclick = function (){
+           return true;
+       }
+    }
+        $("#img").attr('src',src='../static/Img_From_File/Standard_12_ECG.png?t='+Math.random());
+</script>
+<script>
+layui.use(['form', 'layedit'], function(){
+  var form = layui.form
+  ,layer = layui.layer;
+});
+</script>
+</body>
+</html>

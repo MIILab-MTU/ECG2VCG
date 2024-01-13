@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Canvas Annotation</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+    body{
+      margin: 0;
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+    #left{
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #right{
+
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    #rightHeader{
+      width: 100%;
+      height: 665px;
+      {#flex-grow: 1;#}
+      display: flex;
+      flex-direction: row;
+    }
+    #rightFooter{
+
+      height: 50px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+    #rhLeft{
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    #rhLeftTop{
+      flex-grow: 1;
+      display: flex;
+      flex-direction: row;
+    }
+    #rhLTLeft{
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #rhLTRight{
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      {#justify-content: flex-end;#}
+    }
+    #colorBtn{
+      position: relative;
+      top: 250px;
+     margin-left: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    #orangeBtn,#greenBtn,#redBtn,#yellowBtn,#blueBtn{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+    }
+    #rhLeftBottom{
+      height: 100px;
+      display: flex;
+      flex-direction: row;
+    }
+    #rhBLeft{
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    #work{
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .buttonImg{
+      width: 60px;
+      height: 60px;
+    }
+    #rhBRight{
+      width: 300px;
+    }
+    #leftImg{
+      width: 300px;
+      height: 384px;
+    }
+    #canvasBorder{
+      width: 900px;
+      height: 500px;
+      border: 5px ridge dodgerblue;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #myCanvas{
+      /*{#Retrieve the address of the canvas background image(VCG_VM.png).#}*/
+      background: url("../static/Img_From_File/VCG_VM.png");
+      background-size: 860px 430px;
+    }
+    .button1{
+      width: 120px;
+      height: 40px;
+      color: #FFFFFF;
+      border: 1px solid darkgrey;
+    }
+    #onsetOfQrs{
+      background-color: #ff7f0e;
+    }
+    #R_peak{
+      background-color: #2ca02c;
+    }
+    #onsetOfST{
+      background-color: #d62728;
+    }
+    #T_peak{
+      background-color: #bcbd22;
+    }
+    #T_end{
+      background-color: #1f77b4;
+    }
+    .next{
+      width: 160px;
+      height: 35px;
+      background-color: #4472c4;
+      font-size: 16px;
+      color: white;
+    }
+    #lastDiv{
+      flex-grow: 1;
+    }
+  </style>
+</head>
+<body id="body">
+  <div id="left">
+    <h1>VCG</h1><br/><br/>
+    <img src="../static/Img_From_File/VCG_XYZ.png" id="leftImg" alt="No File Uploaded">
+  </div>
+  <div id="right">
+    <div id="rightHeader">
+      <div id="rhLeft">
+        <div id="rhLeftTop">
+          <div id="rhLTLeft">
+            <h1></h1>
+            <div id="canvasBorder">
+              <canvas id="myCanvas" width="860" height="430" style="background-color: #f3f0f0"></canvas>
+            </div>
+          </div>
+          <div id="rhLTRight">
+            <div id="colorBtn">
+              <h3>COLOR BRUSH:</h3>
+              <div id="orangeBtn">
+              <div id="img1">
+                <img src="../static/image/circle.png" style="width: 8px;height: 8px">
+              </div>&nbsp;&nbsp;
+              <button id="onsetOfQrs" class="button1">Onset of QRS</button>
+              </div>
+              <div id="greenBtn">
+              <div id="img2">
+                <img src="../static/image/circle.png" style="width: 8px;height: 8px">
+              </div>&nbsp;&nbsp;
+              <button id="R_peak" class="button1">R peak</button>
+              </div>
+              <div id="redBtn">
+              <div id="img3">
+                <img src="../static/image/circle.png" style="width: 8px;height: 8px">
+              </div>&nbsp;&nbsp;
+              <button id="onsetOfST" class="button1">Onset of ST</button>
+              </div>
+              <div id="yellowBtn">
+              <div id="img4">
+                <img src="../static/image/circle.png" style="width: 8px;height: 8px">
+              </div>&nbsp;&nbsp;
+              <button id="T_peak" class="button1">T peak</button>
+              </div>
+              <div id="blueBtn">
+              <div id="img5">
+                <img src="../static/image/circle.png" style="width: 8px;height: 8px">
+              </div>&nbsp;&nbsp;
+              <button id="T_end" class="button1">T end</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="rhLeftBottom">
+          <div id="rhBLeft" align="center">
+              <div id="warm"><p style="color:red">Warm tips: Please save the label before clicking 'Next'!</p></div>
+              <div id="work">
+                  <button class="buttonImg" id="coloring"><img src="../static/image/coloring.svg" title="Color picture display"></button>
+                  <button class="buttonImg" id="clear"><img src="../static/image/remove.png" title="Empty"></button>
+                  <button class="buttonImg" id="return"><img src="../static/image/return.svg" title="Return"></button>
+                  <button class="buttonImg" id="save"><img src="../static/image/save.png" title="Save label"></button>
+              </div>
+          </div>
+          <div id="rhBRight"></div>
+        </div>
+      </div>
+    </div>
+    <div id="rightFooter">
+      <a href="../"><button id="Back" class="next">Back</button></a>&nbsp;&nbsp;
+      <a href="/second2"><button id="nextWithout" class="next">Next Without Label</button></a>&nbsp;&nbsp;
+      <a href="/second" id="demoANext"><button id="next" class="next">Next</button></a>
+    </div>
+    <div id="lastDiv"></div>
+  </div>
+  <script type="text/javascript">
+    var canvas = document.querySelector("canvas");
+    var ctx = canvas.getContext("2d");
+    var orangeX = 0;
+    var orangeY = 0;
+    var greenX = 0;
+    var greenY = 0;
+    var redX = 0;
+    var redY = 0;
+    var yellowX = 0;
+    var yellowY = 0;
+    var blueX = 0;
+    var blueY = 0;
+    var color = "";
+    var data = [];
+    document.getElementById("onsetOfQrs").onclick = function () {
+      color = "orange";
+      document.getElementById("img1").innerHTML="<img src='../static/image/orangeCircle.png' style=\"width: 8px;height: 8px\">";
+      document.getElementById("img2").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">";
+      document.getElementById("img3").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">";
+      document.getElementById("img4").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">";
+      document.getElementById("img5").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">";
+    }
+    document.getElementById("R_peak").onclick = function () {
+      color = "green";
+      document.getElementById("img2").innerHTML="<img src='../static/image/greenCircle.png' style=\"width: 8px;height: 8px\">";
+      document.getElementById("img1").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">"
+      document.getElementById("img3").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">"
+      document.getElementById("img4").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">"
+      document.getElementById("img5").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">";
+    }
+    document.getElementById("onsetOfST").onclick = function () {
+      color = "red";
+      document.getElementById("img3").innerHTML="<img src='../static/image/redCircle.png' style=\"width: 8px;height: 8px\">";
+      document.getElementById("img1").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">"
+      document.getElementById("img2").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">"
+      document.getElementById("img4").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">"
+      document.getElementById("img5").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">";
+    }
+    document.getElementById("T_peak").onclick = function () {
+      color = "yellow";
+      document.getElementById("img4").innerHTML="<img src='../static/image/yellowCircle.png' style=\"width: 8px;height: 8px\">";
+      document.getElementById("img1").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">"
+      document.getElementById("img2").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">"
+      document.getElementById("img3").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">"
+      document.getElementById("img5").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">";
+    }
+    document.getElementById("T_end").onclick = function () {
+      color = "blue";
+      document.getElementById("img5").innerHTML="<img src='../static/image/blueCircle.png' style=\"width: 8px;height: 8px\">";
+      document.getElementById("img1").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">";
+      document.getElementById("img2").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">"
+      document.getElementById("img3").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">"
+      document.getElementById("img4").innerHTML="<img src='../static/image/circle.png' style=\"width: 8px;height: 8px\">";
+    }
+    {#var eraser = document.getElementById("eraser");#}
+    {#eraser.onclick = function(){#}
+    {#  // Add a pressed event to the canvas for erasure.#}
+    {#  canvas.onmousedown = function(){#}
+    {#    canvas.onmousemove = function (e) {#}
+    {#      // Use method clearRect() to erase the 20*20 area of the mouse click.#}
+    {#      var w = 20;#}
+    {#      var h = 20;#}
+    {#      var x = e.pageX - canvas.offsetLeft - w/2;#}
+    {#      var y = e.pageY - canvas.offsetTop - h/2;#}
+    {#      ctx.clearRect(x,y,w,h);#}
+    {#    }#}
+    {#  }#}
+    {#  // Add a mouse-up event to the canvas.#}
+    {#  canvas.onmouseup = function(){#}
+    {#    // MAIN:The eraser can be removed when the mouse clicks,but when mouse loosens the click,#}
+    {#    // it should be removed from the upper mouse movement elimination event.#}
+    {#    canvas.onmousemove = null;#}
+    {#    data.push(ctx.getImageData(0, 0, 860, 430));#}
+    {#    // And re-assign the sub-calendar point to the event as the brush event.#}
+    {#    canvas.onmousedown = drawPoint;#}
+    {#  }#}
+    //}
+
+    var clear = document.getElementById("clear");
+    clear.onclick = function () {
+      ctx.clearRect(0, 0, 860, 430);
+      orangeX = 0;
+      orangeY = 0;
+      greenX = 0;
+      greenY = 0;
+      redX = 0;
+      redY = 0;
+      yellowX = 0;
+      yellowY = 0;
+      blueX = 0;
+      blueY = 0;
+    }
+
+    canvas.onmousedown = function () {
+      drawPoint(event);
+      document.onmouseup = function () {
+        //Gets all of the graph data in a specified area of the canvas
+        data.push(ctx.getImageData(0, 0, 860, 430));
+        canvas.onmousemove = null;
+        document.onmouseup = null;
+      }
+    }
+    var reBack = document.getElementById("return");
+    reBack.onclick = function() {
+      if (data.length == 0) {
+        alert("Invalid operation!!!");
+        return;
+      }
+      ctx.clearRect(0, 0, 860, 430);
+      data.pop();
+      if (data.length == 0) {
+        return;
+      }
+      ctx.putImageData(data[data.length - 1], 0, 0, 0, 0, 860, 430);
+    }
+    function drawPoint(e) {
+      if (color == "orange") {
+        ctx.clearRect(orangeX-3,orangeY-3,6,6)
+        ctx.beginPath();
+        ctx.arc(e.offsetX,e.offsetY,3,0,360,false);
+        ctx.fillStyle="#ff7f0e";
+        ctx.fill();
+        ctx.closePath();
+        // ctx.fill();
+        orangeX = Math.abs(e.offsetX);
+        orangeY = Math.abs(e.offsetY);
+        console.log(orangeX, orangeY);
+      }
+      if (color == "green") {
+        ctx.clearRect(greenX-3,greenY-3,6,6);
+        ctx.beginPath();
+        ctx.arc(e.offsetX,e.offsetY,3,0,360,false);
+        ctx.fillStyle="#2ca02c";
+        ctx.fill();
+        ctx.closePath();
+        greenX = Math.abs(e.offsetX);
+        greenY = Math.abs(e.offsetY);
+        console.log(greenX, greenY);
+      }
+      if (color == "red") {
+        ctx.clearRect(redX-3,redY-3,6,6);
+        ctx.beginPath();
+        ctx.arc(e.offsetX,e.offsetY,3,0,360,false);
+        ctx.fillStyle="#d62728";
+        ctx.fill();
+        ctx.closePath();
+        redX = Math.abs(e.offsetX);
+        redY = Math.abs(e.offsetY);
+        console.log(redX, redY);
+      }
+      if (color == "yellow") {
+        ctx.clearRect(yellowX-3,yellowY-3,6,6)
+        ctx.beginPath();
+        ctx.arc(e.offsetX,e.offsetY,3,0,360,false);
+        ctx.fillStyle="#bcbd22";
+        ctx.fill();
+        ctx.closePath();
+        yellowX = Math.abs(e.offsetX);
+        yellowY = Math.abs(e.offsetY);
+        console.log(yellowX, yellowY);
+      }
+      if (color == "blue") {
+        ctx.clearRect(blueX-3,blueY-3,6,6)
+        ctx.beginPath();
+        ctx.arc(e.offsetX,e.offsetY,3,0,360,false);
+        ctx.fillStyle="#1f77b4";
+        ctx.fill();
+        ctx.closePath();
+        blueX = Math.abs(e.offsetX);
+        blueY = Math.abs(e.offsetY);
+        console.log(blueX, blueY);
+      }
+    }
+    document.getElementById("save").onclick = function () {
+       {#Save the points retrieved on the canvas as a JSON file.#}
+      var points = [
+        {"firstX": orangeX, "firstY": orangeY},
+        {"secondX": greenX, "secondY": greenY},
+        {"thirdX": redX, "thirdY": redY},
+        {"fourthX": yellowX, "fourthY": yellowY},
+        {"fifthX": blueX, "fifthY": blueY}
+      ]
+      {#Ajax transfers the JSON file from the storage point to the background.#}
+      $.ajax({
+        type: 'POST',
+        url: '../first/',
+        {#data: points,#}
+        data:  JSON.stringify(points),
+        processData: false,
+        contentType: "application/json",
+        error: function (request) {
+          console.log(points);
+        },
+        success: function (result) {
+            console.log("success");
+        }
+      });
+      ctx.clearRect(0, 0, 860, 430);
+        document.getElementById("demoANext").onclick = function () {
+            return true;
+        }
+        document.getElementById("coloring").onclick = function () {
+          var bg = "../static/Img_From_File/Color_VCG.png";
+          $(canvas).css("background","url("+bg+")");
+          $(canvas).css("background-color","#f3f0f0");
+          canvas.style.backgroundSize = "860px 430px";
+        }
+    }
+    document.getElementById("coloring").onclick = function () {
+        alert("Please save the label first !");
+        return false;
+    }
+
+    document.getElementById("demoANext").onclick = function (){
+        alert("Please save the label before clicking 'Next'!");
+        return false;
+    }
+  </script>
+</body>
+</html>

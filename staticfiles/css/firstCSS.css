@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+}
+#wrap{
+    width: 100%;
+    display: inline-flex;
+}
+#left{
+    width: 40%;
+    display: inline-block;
+}
+#middle{
+    width: 30%;
+    display: inline-block;
+}
+#right{
+    width: 30%;
+    display: block;
+}
+#divImgSub{
+    width: 500px;
+    height: 485px;
+}
+#VCG{
+    width: 300px;
+    height: 523px;
+}
+#right ul li a{
+    color: black;
+}
+.buttonImg{
+    width: 60px;
+    height: 60px;
+    border: none;
+}
+#ulCircle{
+    list-style-type: none;
+}
+#ulCircle li a{
+    text-decoration: none;
+    font-size: 18px;
+}
+#divA{
+    width: 220px;
+}
+#divA button{
+    width: 60px;
+    height: 30px;
+    background-color: #4472c4;
+    color: white;
+}
+#divA button a{
+    color: #FFFFFF;
+    font-size: 18px;
+    text-decoration: none;
+}
+.divImg{
+    display: inline;
+}
