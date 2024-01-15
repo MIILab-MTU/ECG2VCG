@@ -1,5 +1,9 @@
 # ReadMe
 
+The purpose of this project is to conver ECG into VCG. It was implemented by Dr. Zhou He at the Michigan Tech Laboratory of Medical Imaging and Informatics.
+See Dr. He's PhD dissertation: https://digitalcommons.mtu.edu/etdr/1639/
+or at: https://doi.org/10.37099/mtu.dc.etdr/1639
+
 
 ## Run code locally
 In Terminal:
